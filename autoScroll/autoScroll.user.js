@@ -120,7 +120,7 @@
       Notification.requestPermission();
       var notification = new Notification('自动滚屏错误：', {
         body: aText,
-        icon: 'http://chuantu.biz/t/66/1425447844x-1376440082.png'
+        icon: 'https://raw.githubusercontent.com/GH-Kelo/userscript/master/autoScroll/img/autoScroll.png'
       });
       //设置定时撤销机制，防止通知长时间显示不被关闭 
       notification.ondisplay = function (event) {
