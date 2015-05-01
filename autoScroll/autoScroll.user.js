@@ -1,7 +1,6 @@
 // ==UserScript==
 // @name            滚动到指定位置
 // @namespace   hzhz03371950@gmail.com
-<<<<<<< HEAD
 // @description   随心定制规则，指定网站滚到指定位置，再也不用看那些“垃圾内容”。
 // @version         beta 0.3.5
 // @author          Kelo
@@ -22,7 +21,6 @@
 // @note            2015.4.29 beta 0.3.1 优化代码，增加了全新的存储功能(使用GM_getValue和GM_setValue)。
 // @note            2015.4.30 beta 0.3.5 优化代码，改进了全新的存储功能(使用localStorage)。
 // @note            会对网页加载速度有一定影响，但并不大，在承受范围内。注意：一般默认参数优先级低于prefs。
-=======
 // @description 随心定制规则，指定网站滚到指定位置，再也不用看那些“垃圾内容”。
 // @version     beta 0.3.5
 // @author      Kelo
