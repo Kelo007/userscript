@@ -1,10 +1,10 @@
 // ==UserScript==
 // @name            滚动到指定位置
-// @namespace   hzhz03371950@gmail.com
-// @description   随心定制规则，指定网站滚到指定位置，再也不用看那些“垃圾内容”。
+// @namespace       hzhz03371950@gmail.com
+// @description     随心定制规则，指定网站滚到指定位置，再也不用看那些“垃圾内容”。
 // @version         beta 0.3.5
 // @author          Kelo
-// @icon              https://raw.githubusercontent.com/GH-Kelo/userscript/master/autoScroll/img/autoScroll.png
+// @icon            https://raw.githubusercontent.com/GH-Kelo/userscript/master/autoScroll/img/autoScroll.png
 // @include         *
 // @grant           GM_getValue
 // @grant           GM_setValue
