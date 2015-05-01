@@ -6,8 +6,6 @@
 // @author          Kelo
 // @icon            https://raw.githubusercontent.com/GH-Kelo/userscript/master/autoScroll/img/autoScroll.png
 // @include         *
-// @grant           GM_getValue
-// @grant           GM_setValue
 // @grant           GM_openInTab
 // @run-at          document-start
 // @note            2015.3.3  beta 0.1.0 简单修改自http://bbs.kafan.cn/thread-1795464-1-1.html，加入循环（不影响网页加载），使用“document-start”，在网页加载完前即滚动，更加迅速。
@@ -35,8 +33,7 @@
   var prefs = {
     'bdnews': {
       startReg: /http:\/\/news\.baidu\.com/i,   //定义href正则
-      height: 2000,
-      //element: '#headerwrapper',              //参数为要点击的按钮的css3 selector
+      element: '#headerwrapper',              //参数为要点击的按钮的css3 selector
       delay: 100,                               //总延迟
       times: [10,10],                           //前为次数，后为间隔，如果没有间隔，就为默认100(单位毫秒)。根据网速设定(在网页加载完前循环)。
       isStandby: true                           //定义是否，等待网页加载完毕后执行滚屏。
@@ -94,7 +91,6 @@
   }
   
   function autoScroll(eltOrhit, delay, times, adjustment) {
-    //if(isSave && (GM_getValue('saveState') =="fresh")) return;
     if(isSave && (localStorage.getItem('asSaveState') =="fresh")) return;
     var t = 0; //计时器  
     setTimeout(function () {
@@ -141,10 +137,8 @@
     window.onunload = function () {
       if (document.documentElement.scrollWidth != 0)
         localStorage.setItem('asSaveState','fresh');   
-        //GM_setValue('saveState', 'fresh');
        else
         localStorage.setItem('asSaveState','close'); 
-        //GM_setValue('saveState', 'close');
     }
   }
   
