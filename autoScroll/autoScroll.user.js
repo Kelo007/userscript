@@ -4,12 +4,12 @@
 // @description     随心定制规则，指定网站滚到指定位置，再也不用看那些“垃圾内容”。
 // @version         beta 0.3.5
 // @author          Kelo
-// @icon            https://raw.githubusercontent.com/GH-Kelo/userscript/master/autoScroll/img/autoScroll.png
 // @include         *
 // @run-at          document-start
-// @homepageURL            https://github.com/GH-Kelo/userscript/tree/master/autoScroll
-// @updateURL            https://raw.githubusercontent.com/GH-Kelo/userscript/master/autoScroll/autoScroll.user.js
-// @downloadURL            https://raw.githubusercontent.com/GH-Kelo/userscript/master/autoScroll/autoScroll.user.js
+// @homepageURL     https://github.com/GH-Kelo/userscript/tree/master/autoScroll
+// @updateURL       https://raw.githubusercontent.com/GH-Kelo/userscript/master/autoScroll/autoScroll.user.js
+// @downloadURL     https://raw.githubusercontent.com/GH-Kelo/userscript/master/autoScroll/autoScroll.user.js
+// @icon            https://raw.githubusercontent.com/GH-Kelo/userscript/master/autoScroll/img/autoScroll.png
 // @note            2015.3.3  beta 0.1.0 简单修改自http://bbs.kafan.cn/thread-1795464-1-1.html，加入循环（不影响网页加载），使用“document-start”，在网页加载完前即滚动，更加迅速。
 // @note            2015.3.4  beta 0.1.1 修复V1.0循环问题。
 // @note            2015.3.4  beta 0.1.5 更新至1.5大幅度优化代码、代码逻辑，增加显示错误功能，更快的速度。
