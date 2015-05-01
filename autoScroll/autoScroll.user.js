@@ -21,30 +21,6 @@
 // @note            2015.4.29 beta 0.3.1 优化代码，增加了全新的存储功能(使用GM_getValue和GM_setValue)。
 // @note            2015.4.30 beta 0.3.5 优化代码，改进了全新的存储功能(使用localStorage)。
 // @note            会对网页加载速度有一定影响，但并不大，在承受范围内。注意：一般默认参数优先级低于prefs。
-// @description 随心定制规则，指定网站滚到指定位置，再也不用看那些“垃圾内容”。
-// @version     beta 0.3.5
-// @author      Kelo
-// @icon	      https://raw.githubusercontent.com/GH-Kelo/userscript/master/autoScroll/img/autoScroll.png
-// @include     http://bbs.kafan.cn/forum*.html
-// @include     http://news.baidu.com/
-// @include     http://news.qq.com/
-// @include     http://tieba.baidu.com/f?kw=*
-// @grant	      GM_getValue
-// @grant	      GM_setValue
-// @grant       GM_openInTab
-// @run-at      document-start
-// @note        2015.3.3  beta 0.1.0 简单修改自http://bbs.kafan.cn/thread-1795464-1-1.html，加入循环（不影响网页加载），使用“document-start”，在网页加载完前即滚动，更加迅速。
-// @note        2015.3.4  beta 0.1.1 修复V1.0循环问题。
-// @note        2015.3.4  beta 0.1.5 更新至1.5大幅度优化代码、代码逻辑，增加显示错误功能，更快的速度。
-// @note        2015.3.4  beta 0.1.6 简单增加存储网址，判断是否为刷新(刷新即不滚屏)。(有待完善)
-// @note        2015.3.4  beta 0.1.7 简单完善存储，优化代码。(自用)
-// @note        2015.3.4  beta 0.2.0 增加上下调整参数，为存储增加开关(默认false)。
-// @note        2015.3.14 beta 0.2.5 增加桌面通知报错，第一次需要允许。
-// @note        2015.4.26 beta 0.3.0 优化代码，删除存储，目前办不到，以后考虑添加。
-// @note        2015.4.29 beta 0.3.1 优化代码，增加了全新的存储功能(使用GM_getValue和GM_setValue)。
-// @note        2015.4.30 beta 0.3.5 优化代码，改进了全新的存储功能(使用localStorage)。
-// @note        会对网页加载速度有一定影响，但并不大，在承受范围内。注意：一般默认参数优先级低于prefs。
->>>>>>> origin/master
 // ==/UserScript==
 (function () {
   //===============自定义设置区 Settings=============
