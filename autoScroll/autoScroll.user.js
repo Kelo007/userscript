@@ -6,7 +6,6 @@
 // @author          Kelo
 // @icon            https://raw.githubusercontent.com/GH-Kelo/userscript/master/autoScroll/img/autoScroll.png
 // @include         *
-// @grant           GM_openInTab
 // @run-at          document-start
 // @note            2015.3.3  beta 0.1.0 简单修改自http://bbs.kafan.cn/thread-1795464-1-1.html，加入循环（不影响网页加载），使用“document-start”，在网页加载完前即滚动，更加迅速。
 // @note            2015.3.4  beta 0.1.1 修复V1.0循环问题。
