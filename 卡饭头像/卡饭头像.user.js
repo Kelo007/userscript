@@ -1,9 +1,9 @@
 // ==UserScript==
-// @name 卡饭头像
-// @namespace  https://github.com/GH-Kelo/userscript
-// @include http://bbs.kafan.cn/forum-*.html
-// @version 1
-// @grant none
+// @name	卡饭头像
+// @namespace	https://github.com/GH-Kelo/userscript
+// @include	http://bbs.kafan.cn/forum-*.html
+// @version	1
+// @grant	none
 // ==/UserScript==
 (function () { 
 	var css = '\
@@ -64,5 +64,5 @@
 	document.addEventListener("click", (event) => {
 		clearTimeout(timer)
 		timer = setTimeout(addAvatar, 500);
-	}, false)
+	}, false);
 })();
