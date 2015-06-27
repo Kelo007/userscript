@@ -2,8 +2,7 @@
 // @name	卡饭头像
 // @namespace	https://github.com/GH-Kelo/userscript
 // @include	http://bbs.kafan.cn/forum-*.html
-// @version	1
-// @grant	none
+// @version	1.1
 // ==/UserScript==
 (function () { 
 	var css = '\
@@ -33,14 +32,23 @@
 	function addAvatar() {
 		var list = document.querySelectorAll('tbody > tr > td.by:nth-child(3) > cite > a');
 		for (let i in list) {
-			var _list = list[i];
+			let _list = list[i];
 			if (!_list.href || _list.hasAttribute("avatarIndex")) continue;
 			_list.setAttribute('avatarIndex', i);
-			var img = document.createElement('img');
+			let img = document.createElement('img');
 			img.setAttribute('class', 'GMKaFanAvatar');
-			img.setAttribute('src', getAvatar(_list.href));
+			//img.setAttribute('src', getAvatar(_list.href));
 			_list.parentNode.parentNode.insertBefore(img, _list.parentNode);
+			loadImg(img, getAvatar(_list.href));
 		}
+	}
+	
+	function loadImg(img, src) {
+		var imgloader= new Image();
+		imgloader.src = src;
+		imgloader.onload = function() {
+			img.src = src;
+		};	
 	}
 	
 	// like http://www.kafan.cn/space-uid-968453.html → http://b.ikafan.com/000/96/84/53_avatar_middle.jpg
@@ -57,12 +65,12 @@
 	}
 	
 	var timer;
-	document.addEventListener("scroll", (event) => {
-		clearTimeout(timer)
-		timer = setTimeout(addAvatar, 500);
+	document.addEventListener("scroll", function(event) {
+		timer && clearTimeout(timer)
+		timer = setTimeout(addAvatar, 1000);
 	}, false);
-	document.addEventListener("click", (event) => {
-		clearTimeout(timer)
-		timer = setTimeout(addAvatar, 500);
+	document.addEventListener("click", function(event) {
+		timer && clearTimeout(timer)
+		timer = setTimeout(addAvatar, 1000);
 	}, false);
 })();
