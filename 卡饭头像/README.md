@@ -6,7 +6,8 @@
 ###图片  
 ![](https://github.com/GH-Kelo/userscript/raw/master/卡饭头像/img/变化.png "变化")   
 
-###更新记录    
+###更新记录   
+ - 2015.6.27 改用异步加载图片，防止卡顿  
  - 2015.6.27 创建  
 
 
