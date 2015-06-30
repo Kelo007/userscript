@@ -2,7 +2,7 @@
 // @name	卡饭头像
 // @namespace	https://github.com/GH-Kelo/userscript
 // @include	http://bbs.kafan.cn/forum-*.html
-// @version	1.2
+// @version	1.3
 // ==/UserScript==
 (function () {
 	var config = {
@@ -20,8 +20,8 @@
 			float: left;\
 			width: auto;\
 			height: auto;\
-			max-width: 25px;\
-			max-height: 25px;\
+			max-width: 22px;\
+			max-height: 22px;\
 			background: #FFF none repeat scroll 0% 0%;\
 			border-width: 1px;\
 			border-style: solid;\
@@ -32,6 +32,7 @@
 			border-image: none;\
 			border-color: #F8F8F8 #CDCDCD #CDCDCD #F8F8F8;\
 			border-radius: 5px;\
+			-moz-box-align: center;\
 		}\
 	';
 	addStyle(css);
