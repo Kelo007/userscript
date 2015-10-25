@@ -7,6 +7,7 @@
 ![](https://github.com/GH-Kelo/userscript/raw/master/卡饭头像/img/变化.png "变化")   
 
 ###更新记录   
+ - 2015.10.25 更新代码
  - 2015.6.30 更新CSS
  - 2015.6.27 更新
   - 1）增加一些设置

@@ -1,88 +1,130 @@
 // ==UserScript==
-// @name	卡饭头像
-// @namespace	https://github.com/GH-Kelo/userscript
-// @include	http://bbs.kafan.cn/forum-*.html
-// @version	1.3
+// @name  卡饭头像
+// @author Kelo
+// @namespace https://github.com/GH-Kelo/userscript
+// @version 1.4.0
+// @license MIT
+// @include http://bbs.kafan.cn/forum-*.html
+// @run-at  document-end
 // ==/UserScript==
-(function () {
-	var config = {
-		//延迟时间（毫秒）
-		delay: 1000,
-		//加载图片
-		load: 'chrome://global/skin/icons/loading_16.png',
-		//错误图片
-		err: 'chrome://global/skin/icons/error-16.png',
-	};
-	var css = '\
-		.GMKaFanAvatar {\
-			padding: 2px;\
-			margin: auto 5px;\
-			float: left;\
-			width: auto;\
-			height: auto;\
-			max-width: 22px;\
-			max-height: 22px;\
-			background: #FFF none repeat scroll 0% 0%;\
-			border-width: 1px;\
-			border-style: solid;\
-			-moz-border-top-colors: none;\
-			-moz-border-right-colors: none;\
-			-moz-border-bottom-colors: none;\
-			-moz-border-left-colors: none;\
-			border-image: none;\
-			border-color: #F8F8F8 #CDCDCD #CDCDCD #F8F8F8;\
-			border-radius: 5px;\
-			-moz-box-align: center;\
-		}\
-	';
-	addStyle(css);
-	addAvatar(); 
-	
-	function addAvatar() {
-		var list = document.querySelectorAll('tbody > tr > td.by:nth-child(3) > cite > a');
-		for (var i in list) {
-			var _list = list[i];
-			if (!_list.href || _list.hasAttribute("avatarIndex")) continue;
-			_list.setAttribute('avatarIndex', i);
-			var img = document.createElement('img');
-			img.setAttribute('class', 'GMKaFanAvatar');
-			img.setAttribute('src', config.load);
-			_list.parentNode.parentNode.insertBefore(img, _list.parentNode);
-			loadImg(img, getAvatar(_list.href));
-		}
-	}
-	
-	function loadImg(img, src) {
-		var imgloader= new Image();
-		imgloader.src = src;
-		imgloader.onload = function() {
-			img.src = src;
-		};
-		imgloader.onerror = function() {
-			img.src = config.err;
-		};
-	}
-	
-	// like http://www.kafan.cn/space-uid-968453.html → http://b.ikafan.com/000/96/84/53_avatar_middle.jpg
-	function getAvatar(src) {
-		var uid = src.split('-')[2].split('.')[0];
-		if (uid.length < 6) uid = '000000'.substring(uid.length) + uid;
-		var uidArr = uid.match(/\d{2}/g);
-		var avatarSrc = 'http://b.ikafan.com/000/' + uidArr[0] + '/' + uidArr[1] + '/' + uidArr[2] + '_avatar_small.jpg';
-		return avatarSrc;
-	}
-	
-	function addStyle(css) {
-		document.head.appendChild(document.createElement('style')).textContent = css;
-	}
-	
-	var timer;
-	document.addEventListener("scroll", function(event) {
-		timer && clearTimeout(timer)
-		timer = setTimeout(addAvatar, config.delay);
-	}, false);
-	document.addEventListener("click", function(event) {
-		timer && clearTimeout(timer)
-		timer = setTimeout(addAvatar, config.delay);
-	}, false);
+(function() {
+  var config = {
+    // 延迟时间（毫秒）
+    delay: 1000,
+    // 加载图片
+    load: 'chrome://global/skin/icons/loading_16.png',
+    // 错误图片
+    err: 'chrome://global/skin/icons/error-16.png',
+  };
+
+  var css = [
+    '.GMKaFanAvatar {',
+      'padding: 2px;',
+      'margin: auto 5px;',
+      'float: left;',
+      'width: auto;',
+      'height: auto;',
+      'max-width: 22px;',
+      'max-height: 22px;',
+      'background: #FFF none repeat scroll 0% 0%;',
+      'border-width: 1px;',
+      'border-style: solid;',
+      '-moz-border-top-colors: none;',
+      '-moz-border-right-colors: none;',
+      '-moz-border-bottom-colors: none;',
+      '-moz-border-left-colors: none;',
+      'border-image: none;',
+      'border-color: #F8F8F8 #CDCDCD #CDCDCD #F8F8F8;',
+      'border-radius: 5px;',
+      '-moz-box-align: center;'
+  ].join('');
+
+  function init() {
+    addStyle(css);
+    asyncOnce(addAvatar, config.delay);
+    mutationObserver(
+      document.querySelector("#moderate") ?
+        '#moderate' : 'body', function() {
+      asyncOnce(addAvatar, config.delay);
+    });
+  }
+
+  function addAvatar() {
+    var list = document.querySelectorAll('tbody > tr > td.by:nth-child(3) > cite > a');
+    for (var i in list) {
+      var item = list[i];
+      if (!item.href || "avatarIndex" in item.dataset) {
+        continue;
+      }
+      item.dataset.avatarIndex = i;
+      var img = document.createElement('img');
+      img.setAttribute('class', 'GMKaFanAvatar');
+      img.setAttribute('src', config.load);
+      item.parentNode.parentNode.insertBefore(img, item.parentNode);
+      loadImg(img, getAvatar(item.href));
+    }
+  }
+
+  // http://www.kafan.cn/space-uid-968453.html to http://b.ikafan.com/000/96/84/53_avatar_middle.jpg
+  function getAvatar(src) {
+    var uid = src.split('-')[2].split('.')[0];
+    if (uid.length < 6) {
+      uid = '000000'.substring(uid.length) + uid;
+    }
+    var uidArr = uid.match(/\d{2}/g);
+    var avatarSrc = 'http://b.ikafan.com/000/' + uidArr[0] + '/' + uidArr[1] + '/' + uidArr[2] + '_avatar_small.jpg';
+    return avatarSrc;
+  }
+
+  function loadImg(img, src) {
+    var imgloader = new Image();
+    imgloader.src = src;
+    imgloader.onload = function() {
+      img.src = src;
+    };
+    imgloader.onerror = function() {
+      img.src = config.err;
+    };
+  }
+
+  function mutationObserver(selector, fn, option) {
+    var elem = typeof selector === 'string' ?
+      document.querySelector(selector) :
+      document.documentElement;
+    if (!elem) {
+      throw 'mutationObserver: Something wrong';
+    }
+    var observer = new MutationObserver(fn);
+    observer.observe(elem, option || {
+        attributes: true,
+        subtree: true,
+        childList: true
+    });
+  }
+
+  var asyncOnce = (function() {
+    var callbacks = [];
+    return function(fn, delay) {
+      if (typeof fn != 'function') {
+        throw 'The `fn` option must be a function.';
+      }
+      callbacks.forEach(function (item, i, arr) {
+        if (item.fn === fn) {
+          clearTimeout(item.id);
+          delete arr[i];
+        }
+      });
+      var id = setTimeout(fn, delay || 0);
+      callbacks.push({
+        fn: fn,
+        id: id
+      });
+    };
+  })();
+
+  function addStyle(css) {
+    document.head.appendChild(document.createElement('style')).textContent = css;
+  }
+  
+  init();
 })();
