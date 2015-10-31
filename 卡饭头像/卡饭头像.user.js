@@ -1,11 +1,12 @@
 // ==UserScript==
-// @name  卡饭头像
-// @author Kelo
-// @namespace https://github.com/GH-Kelo/userscript
-// @version 1.4.0
-// @license MIT
-// @include http://bbs.kafan.cn/forum-*.html
-// @run-at  document-end
+// @name	卡饭头像
+// @author		Kelo
+// @namespace	https://github.com/GH-Kelo/userscript
+// @version	1.5.0
+// @license	MIT
+// @description	为新版卡饭论坛帖子列表增加用户头像
+// @include	http://bbs.kafan.cn/forum-*.html
+// @run-at	document-end
 // ==/UserScript==
 (function() {
   var config = {
@@ -36,15 +37,19 @@
       'border-image: none;',
       'border-color: #F8F8F8 #CDCDCD #CDCDCD #F8F8F8;',
       'border-radius: 5px;',
-      '-moz-box-align: center;'
+      '-moz-box-align: center;',
+    '}',
+    'td.by cite {',
+      'overflow: hidden;',
+    '}'
   ].join('');
 
   function init() {
     addStyle(css);
     asyncOnce(addAvatar, config.delay);
     mutationObserver(
-      document.querySelector("#moderate") ?
-        '#moderate' : 'body', function() {
+      document.querySelector("#threadlist") ?
+        '#threadlist' : 'body', function() {
       asyncOnce(addAvatar, config.delay);
     });
   }
