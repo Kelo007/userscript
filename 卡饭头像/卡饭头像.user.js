@@ -2,10 +2,11 @@
 // @name	卡饭头像
 // @author		Kelo
 // @namespace	https://github.com/GH-Kelo/userscript
-// @version	1.5.0
+// @version	1.5.1
 // @license	MIT
 // @description	为新版卡饭论坛帖子列表增加用户头像
-// @include	http://bbs.kafan.cn/forum-*.html
+// @include	*.kafan.cn/forum-*.html
+// @include	*.kafan.cn/forum.php?mod=forumdisplay*
 // @run-at	document-end
 // ==/UserScript==
 (function() {
