@@ -1,9 +1,8 @@
 // ==UserScript==
 // @name	卡饭头像
 // @author		Kelo
-// @namespace	https://github.com/GH-Kelo/userscript
-// @version	1.5.1
-// @license	MIT
+// @namespace	https://github.com/ghKelo/userscript
+// @version	1.5.2
 // @description	为新版卡饭论坛帖子列表增加用户头像
 // @include	*.kafan.cn/forum-*.html
 // @include	*.kafan.cn/forum.php?mod=forumdisplay*
@@ -14,7 +13,7 @@
     // 延迟时间（毫秒）
     delay: 1000,
     // 加载图片
-    load: 'chrome://global/skin/icons/loading_16.png',
+    load: 'chrome://global/skin/icons/loading.png',
     // 错误图片
     err: 'chrome://global/skin/icons/error-16.png',
   };
@@ -71,14 +70,14 @@
     }
   }
 
-  // http://www.kafan.cn/space-uid-968453.html to http://b.ikafan.com/000/96/84/53_avatar_middle.jpg
+  // http://www.kafan.cn/space-uid-968313.html to https://b.ikafan.com/000/96/83/13_avatar_middle.jpg
   function getAvatar(src) {
     var uid = src.split('-')[2].split('.')[0];
     if (uid.length < 6) {
       uid = '000000'.substring(uid.length) + uid;
     }
     var uidArr = uid.match(/\d{2}/g);
-    var avatarSrc = 'http://b.ikafan.com/000/' + uidArr[0] + '/' + uidArr[1] + '/' + uidArr[2] + '_avatar_small.jpg';
+    var avatarSrc = 'https://b.ikafan.com/000/' + uidArr[0] + '/' + uidArr[1] + '/' + uidArr[2] + '_avatar_small.jpg';
     return avatarSrc;
   }
 
